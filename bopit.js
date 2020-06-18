@@ -12,7 +12,7 @@ class BopIt {
     this.connections = {};
     this.initListeners();
     this.loadFiles();
-    this.client.login("NzE0NDg5MDM0NjM4MDk4NDQz.XsvbPg.C8IVZxRcWfPJoxkpPlmjnEzm9jM");
+    this.client.login("");
   }
   initListeners() {
     this.client.on("message", msg => {
