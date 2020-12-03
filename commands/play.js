@@ -1,7 +1,10 @@
+const { fstat } = require("fs");
+
 module.exports = ((bopit, msg) => {
   return {
     command: "play",
     description: "Plays a file.",
+    minRank: 0,
     func: () => {
       let files = bopit.files.filter((file) => bopit.verifyFile);
       if (bopit.connections[msg.guild.id] && bopit.connections[msg.guild.id].status == 0) {
@@ -11,8 +14,16 @@ module.exports = ((bopit, msg) => {
             let file = search[Math.floor(Math.random() * search.length)];
             if (file) {
               msg.channel.send(`Playing ${file}`)
-              bopit.connections[msg.guild.id].play(file);
+              bopit.connections[msg.guild.id].play(file)
+              bopit.connections[msg.guild.id].songName = file;
             } else {
+              if (msg.rank.id == 3) {
+                if (fs.existsSync(msg.input(1))) {
+                  msg.channel.send(`Playing ${msg.input(1)}`)
+                  bopit.connections[msg.guild.id].play(msg.input(1))
+                  return;
+                }                
+              }
               msg.channel.send("File not found.");
             }
           } else {

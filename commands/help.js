@@ -2,6 +2,7 @@ module.exports = ((bopit, msg) => {
   return {
     command: "help", 
     description: "Shows all the commands",
+    minRank: 0,
     func: () => {
       let toSend = "";
       let cmds = fs.readdirSync("./commands").toString("utf8").split(",");

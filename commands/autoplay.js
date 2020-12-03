@@ -2,6 +2,7 @@ module.exports = ((bopit, msg) => {
   return {
     command: "autoplay",
     description: "Plays a random sound one after another automatically.",
+    minRank: 0,
     func: () => {
       let files = bopit.files.filter((file) => bopit.verifyFile);
       if (bopit.connections[msg.guild.id] && bopit.connections[msg.guild.id].status == 0) {
@@ -10,9 +11,10 @@ module.exports = ((bopit, msg) => {
         function playFile() {
           if (bopit.connections[msg.guild.id].autoplay) {
             let file = files[Math.floor(Math.random() * files.length)];
-            console.log(file)
             let dispatcher = bopit.connections[msg.guild.id].play(file);
+            bopit.connections[msg.guild.id].songName = file;
             dispatcher.on("finish", () => {
+              bopit.connections[msg.guild.id].songName = "";
               if (bopit.connections[msg.guild.id].delay) {
                 setTimeout(() => {
                   playFile();

@@ -1,13 +1,15 @@
 const Discord = require("discord.js");
-class BopIt {
+const BotBase = require("./botbase.js");
+class BopIt extends BotBase {
   constructor() {
+    super();
     this.client = new Discord.Client(); 
-    this.BopItOnMessage = require("./BopItOnMessage.js")
-    this.bopitonmessage = new this.BopItOnMessage(this);
+    this.bopitonmessage = new this.BopItOnMessage();
     this.OnMessage = this.bopitonmessage.OnMessage;
-    this.cmdChar = '!';
-    this.fileDir = "../../Bop It/Bop It Sounds/EG Hub/";
-    this.validFileExtensions = [".mp3", ".wav", ".ogg", ".m4a"]
+    this.fileDirs =  ["K:/team/electronic_games/"];
+    this.validFileExtensions = [".mp3", ".wav", ".ogg", ".m4a", ".wma", ".flac"];
+    this.dadMode = false;
+    this.breakMode = false;
     this.files = [];
     this.connections = {};
     this.initListeners();
@@ -18,22 +20,29 @@ class BopIt {
     this.client.on("message", msg => {
       this.OnMessage(msg);
     })
+    this.client.on("ready", msg => {
+      console.log("Ready")
+    })
   }
   verifyFile(file) {
     for (let extension of this.validFileExtensions) {
       if (file.endsWith(extension)) return true;
       else continue;
-      return false;
     }
   }
   loadFiles() {
-    getDirectories(this.fileDir, (err, res) => {
-      if (err) {
-        console.log('Error', err);
-      } else {
-        this.files = res;
-      }
-    });
-  }
+    this.files = [];
+    for (let dir of this.fileDirs) {
+      getDirectories(dir, (err, res) => {
+        if (err) {
+          console.log('Error', err);
+        } else {
+          for (let file of res) {
+            this.files.push(file);
+          }
+        }
+      });
+    }
+  } 
 }
 module.exports = BopIt;

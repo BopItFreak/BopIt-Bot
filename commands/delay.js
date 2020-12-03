@@ -2,6 +2,7 @@ module.exports = ((bopit, msg) => {
   return {
     command: "delay", 
     description: "Sets the delay between sounds on autoplay mode.",
+    minRank: 0,
     func: () => {
       if (msg.args.length > 1) {
         let seconds = parseInt(msg.args[1]);

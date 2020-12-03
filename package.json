@@ -1,0 +1,28 @@
+{
+  "name": "bop-it-bot",
+  "version": "1.0.0",
+  "description": "Bot that plays audio files in discord voice channel",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "glob": "^7.1.6",
+    "node-opus": "^0.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BopItFreak/BopIt-Bot.git"
+  },
+  "keywords": [
+    "bopit"
+  ],
+  "author": "Bop It Freak#8512",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BopItFreak/BopIt-Bot/issues"
+  },
+  "homepage": "https://github.com/BopItFreak/BopIt-Bot#readme"
+}
