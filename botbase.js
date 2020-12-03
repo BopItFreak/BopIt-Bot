@@ -6,7 +6,7 @@ class BotBase {
     this.cmdChar = '!';
     this.banmsg = "HAHAHA. YOU'RE BANNNED! 😂";
     this.ranks = require("./db/ranks.json");
-    this.client.login("NzE0NDg5MDM0NjM4MDk4NDQz.XuugfA.fCEHo0hgChqWJLNgi8oyMFKJA_k");
+    this.client.login("");
   }
   getRankById(_id) {
     if (this.ranks.owner._id == _id) {

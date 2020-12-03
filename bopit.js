@@ -14,7 +14,6 @@ class BopIt extends BotBase {
     this.connections = {};
     this.initListeners();
     this.loadFiles();
-    this.client.login("");
   }
   initListeners() {
     this.client.on("message", msg => {
